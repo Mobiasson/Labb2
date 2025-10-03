@@ -31,7 +31,7 @@ Skriv kod som:
 - Lägg till items, vapen, föremål och sätt att återställa HP.
 
 ## Overview of relationships
-
+```mermaid
 %%{init: {'theme': 'dark'}}%%
 classDiagram
     class LevelElement {
@@ -90,3 +90,4 @@ classDiagram
     LevelData o--> "many" LevelElement
     Enemy *--> "2" Dice
     Player *--> "2" Dice
+
