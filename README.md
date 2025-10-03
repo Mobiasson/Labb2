@@ -31,7 +31,6 @@ Skriv kod som:
 - Lägg till items, vapen, föremål och sätt att återställa HP.
 
 ## Overview of relationships
-# Dungeon Crawler Class Diagram
 
 ```mermaid
 classDiagram
