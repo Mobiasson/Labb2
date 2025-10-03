@@ -33,6 +33,7 @@ Skriv kod som:
 ## Overview of relationships
 
 ```mermaid
+%%{init: {'theme': 'dark'}}%%
 classDiagram
     class LevelElement {
         +int X
@@ -82,7 +83,6 @@ classDiagram
         +Throw() int
         +ToString() string
     }
-
     LevelElement <|-- Wall
     LevelElement <|-- Enemy
     LevelElement <|-- Player
