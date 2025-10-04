@@ -1,8 +1,9 @@
+#pragma warning disable CS8618
 abstract class Enemy : LevelElement {
-	public string name;
-	public int healthPoints;
-	public Dice attackDice;
-	public Dice defenceDice;
+	public string name {get;set;}
+	public int healthPoints {get;set;}
+	public Dice attackDice {get;set;}
+	public Dice defenceDice {get;set;}
 
 	public abstract void Update();
 }
