@@ -1,11 +1,11 @@
 abstract class LevelElement {
-	public double x { get; set;}
-	public double y {get; set;}
-	public char ch {get; set;}
-	public ConsoleColor color {get;set;}
+	public double X { get; set; }
+	public double Y { get; set; }
+	public char Ch { get; set; }
+	public ConsoleColor Color { get; set; }
 
 
 	public void Draw() {
-
+	List<LevelElement> elements = new List<LevelElement>();
 	}
 }

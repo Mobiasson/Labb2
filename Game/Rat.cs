@@ -1,11 +1,12 @@
 class Rat : Enemy {
-	public Rat() {
+	public Rat(int x, int y) : base(x, y) {
 		name = "Rat";
-		ch = 's';
-		color = ConsoleColor.DarkRed;
+		Ch = 'r';
+		Color = ConsoleColor.DarkRed;
 		healthPoints = 15;
 		attackDice = new Dice(2, 6, 2);
 	}
+
 
 	public override void Update() {
 		throw new NotImplementedException();
