@@ -19,15 +19,21 @@ public class LevelData {
 						elements.Add(new Rat(x, y));
 					} else if(ch == 's') {
 						elements.Add(new Snake(x, y));
+					} else if(ch == ' ') {
+						Console.SetCursorPosition(x, y);
+						Console.Write(' ');
 					}
+				}
+				foreach(var ele in elements) {
+					ele.Draw();
 				}
 			}
 		} catch(FileNotFoundException) {
 			Console.WriteLine("File was not found! Check your path!");
 		}
 	}
-	public void PrintElements() {
-		elements.ForEach(e => Console.WriteLine($"Type: {e.GetType().Name}, Char: {e.Ch}, X: {e.Y}, Y: {e.Y}"));
-		Console.WriteLine($"Player Start Position: ({playerStartPos.x}, {playerStartPos.y})");
-	}
+	// public void PrintElements() {
+	// 	elements.ForEach(e => Console.WriteLine($"Type: {e.GetType().Name}, Char: {e.Ch}, X: {e.Y}, Y: {e.Y}"));
+	// 	Console.WriteLine($"Player Start Position: ({playerStartPos.x}, {playerStartPos.y})");
+	// }
 }

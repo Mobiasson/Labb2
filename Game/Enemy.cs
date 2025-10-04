@@ -1,6 +1,6 @@
 #pragma warning disable CS8618
 abstract class Enemy : LevelElement {
-	protected Enemy(int x, int y) {
+	public Enemy(int x, int y) {
 		X = x;
 		Y = y;
 	}
