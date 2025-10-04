@@ -19,7 +19,10 @@ public class LevelData {
 						elements.Add(new Rat(x, y));
 					} else if(ch == 's') {
 						elements.Add(new Snake(x, y));
-					} else if(ch == ' ') {
+					} else if(ch == '@') {
+						elements.Add(new Player(x, y));
+					}
+					else if(ch == ' ') {
 						Console.SetCursorPosition(x, y);
 						Console.Write(' ');
 					}
