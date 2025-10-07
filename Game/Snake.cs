@@ -1,4 +1,4 @@
-class Snake : Enemy {
+public class Snake : Enemy {
 	public Snake(int x, int y) : base(x, y) {
 		name = "Snake";
 		Ch = 's';
@@ -10,4 +10,6 @@ class Snake : Enemy {
 	public override void Update() {
 		throw new NotImplementedException();
 	}
+
+	public override void Move(int x, int y) {}
 }

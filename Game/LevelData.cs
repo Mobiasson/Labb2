@@ -3,7 +3,7 @@
 namespace Game.LevelData;
 public class LevelData {
 	private List<LevelElement>? elements = new List<LevelElement>();
-	public (double x, double y) playerStartPos { get; private set; }
+	public Player Player {get; private set;}
 	readonly List<LevelElement>? Elements;
 
 	public void Load(string fileName) {
@@ -13,30 +13,23 @@ public class LevelData {
 				string line = lines[y];
 				for(int x = 0; x < line.Length; x++) {
 					char ch = line[x];
-					if(ch == '#') {
+					if(ch.Equals('#')) {
 						elements.Add(new Wall(x, y));
-					} else if(ch == 'r') {
+					} else if(ch.Equals('r')) {
 						elements.Add(new Rat(x, y));
-					} else if(ch == 's') {
+					} else if(ch.Equals('s')) {
 						elements.Add(new Snake(x, y));
-					} else if(ch == '@') {
-						elements.Add(new Player(x, y));
-					}
-					else if(ch == ' ') {
-						Console.SetCursorPosition(x, y);
-						Console.Write(' ');
+					} else if(ch.Equals('@')) {
+						Player = new Player(x, y);
+						elements.Add(Player);
+					} else if(ch.Equals(' ')) {
+						Console.SetCursorPosition(x, y); Console.Write(' ');
+						}
 					}
 				}
-				foreach(var ele in elements) {
-					ele.Draw();
-				}
-			}
+				elements.ForEach(ele => ele.Draw());
 		} catch(FileNotFoundException) {
 			Console.WriteLine("File was not found! Check your path!");
 		}
 	}
-	// public void PrintElements() {
-	// 	elements.ForEach(e => Console.WriteLine($"Type: {e.GetType().Name}, Char: {e.Ch}, X: {e.Y}, Y: {e.Y}"));
-	// 	Console.WriteLine($"Player Start Position: ({playerStartPos.x}, {playerStartPos.y})");
-	// }
 }

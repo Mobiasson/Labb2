@@ -1,4 +1,4 @@
-class Dice {
+public class Dice {
 	readonly static Random rnd = new Random();
 	public int numberOfDice = rnd.Next(2);
 	public int sidesPerDice = rnd.Next(1, 6);
