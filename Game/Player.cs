@@ -9,30 +9,30 @@ public class Player : LevelElement {
 	}
 
 	public void MoveUp(LevelData levelData) {
+	ClearCurrentCell();
 	Y--;
-	Clear();
 	Draw();
 	}
 
 	public void MoveDown(LevelData levelData) {
+	ClearCurrentCell();
 	Y++;
-	Clear();
 	Draw();
 	}
 
 	public void MoveLeft(LevelData levelData) {
+	ClearCurrentCell();
 	X--;
-	Clear();
 	Draw();
 	}
 
 	public void MoveRight(LevelData levelData) {
+	ClearCurrentCell();
 	X++;
-	Clear();
 	Draw();
 	}
 
-	public void Clear() {
+	public void ClearCurrentCell() {
 		Console.SetCursorPosition(X, Y);
 		Console.Write(' ');
 	}

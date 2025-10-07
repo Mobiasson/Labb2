@@ -1,4 +1,4 @@
-#pragma warning disable CS8602
+#pragma warning disable CS8602, CS8618
 
 namespace Game.LevelData;
 public class LevelData {
