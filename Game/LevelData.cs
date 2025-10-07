@@ -4,11 +4,11 @@ namespace Game.LevelData;
 public class LevelData {
 	private List<LevelElement>? elements = new List<LevelElement>();
 	public Player Player {get; private set;}
-	readonly List<LevelElement>? Elements;
-
+public IReadOnlyList<LevelElement> Elements => elements.AsReadOnly();
 	public void Load(string fileName) {
 		try {
 			string[] lines = File.ReadAllLines(fileName);
+			Console.CursorVisible = false;
 			for(int y = 0; y < lines.Length; y++) {
 				string line = lines[y];
 				for(int x = 0; x < line.Length; x++) {
