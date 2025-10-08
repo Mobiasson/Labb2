@@ -1,4 +1,5 @@
-public class Rat : Enemy {
+using Game.LevelData;
+public class Rat : Entity {
 
 	public Rat(int x, int y) : base(x, y) {
 		name = "Rat";
@@ -9,12 +10,8 @@ public class Rat : Enemy {
 	}
 
 
-	public override void Update() {
+	public override void Update(LevelData levelData) {
 		throw new NotImplementedException();
 	}
 
-	public override void Move(int x, int y) {
-
-		throw new NotImplementedException();
-	}
 }
