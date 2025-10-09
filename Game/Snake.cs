@@ -9,6 +9,10 @@ public class Snake : Entity {
 		attackDice = new Dice(3, 6, 3);
 	}
 
+	public override void Move(int xDirection, int yDirection, LevelData levelData) {
+		throw new NotImplementedException();
+	}
+
 	public override void Update(LevelData levelData) {
 	Random rnd = new Random();
 	if(healthPoints <= 0) Console.WriteLine("DEAD");

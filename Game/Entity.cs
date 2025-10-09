@@ -15,6 +15,8 @@ public abstract class Entity : LevelElement {
 	return !levelData.Elements.Any(ele => ele is Wall && ele.X == checkX && ele.Y == checkY);
 	}
 
+	public abstract void Move(int xDirection, int yDirection, LevelData levelData);
+
 	public abstract void Update(LevelData levelData);
 
 }

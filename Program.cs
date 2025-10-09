@@ -11,6 +11,9 @@ public class Program {
  			ConsoleKeyInfo key = Console.ReadKey(true);
 				if(key.Key == ConsoleKey.UpArrow) {
 				player.Move(0, -1, levelData);
+				foreach (var entity in levelData.Elements.OfType<Rat>()) {
+                entity.Update(levelData);
+        			}
 				}
 				if(key.Key == ConsoleKey.DownArrow) {
 				player.Move(0, +1, levelData);
@@ -22,9 +25,6 @@ public class Program {
 				player.Move(+1, 0, levelData);
 				}
 			}
-				foreach (var entity in levelData.Elements.OfType<Snake>()) {
-                entity.Update(levelData);
-        	}
 		}
 	}
 }
