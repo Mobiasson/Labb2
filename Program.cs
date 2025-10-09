@@ -20,6 +20,7 @@ public class Program {
 				}
 				player.Move(xOffset, yOffset, levelData);
 				Utility.GetType(typeof(Rat), levelData);
+				Utility.GetType(typeof(Snake), levelData);
 			}
 		}
 	}

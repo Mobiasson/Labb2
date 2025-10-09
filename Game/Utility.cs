@@ -4,6 +4,7 @@ using Game.LevelData;
 	public static class Utility {
 
     public static bool CheckSurrounding(int checkX, int checkY, LevelData levelData) {
+
         return !levelData.Elements.Any(ele => ele is Wall && ele.X == checkX && ele.Y == checkY);
     }
 
@@ -17,11 +18,5 @@ using Game.LevelData;
     	foreach (var ele in levelData.Elements.Where(e => entityType.IsInstanceOfType(e))) {
         	((Entity)ele).Update(levelData);
 		}
-	}
-
-	public static void UpdateAll(LevelData levelData) {
-    	foreach (var ele in levelData.Elements.OfType<Entity>()) {
-        ele.Update(levelData);
-    	}
 	}
 }
