@@ -14,11 +14,11 @@ public class Snake : Entity {
 	}
 
 	public override void Update(LevelData levelData) {
-	Random rnd = new Random();
-	if(healthPoints <= 0) Console.WriteLine("DEAD");
-	int direction = rnd.Next(4);
-	int newX = X; int newY = Y;
-	switch (direction){
+		Random rnd = new Random();
+		if(healthPoints <= 0) Console.WriteLine("DEAD");
+		int direction = rnd.Next(4);
+		int newX = X; int newY = Y;
+		switch(direction) {
 			case 0: newY--; break;
 			case 1: newY++; break;
 			case 2: newX--; break;

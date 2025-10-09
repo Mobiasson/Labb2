@@ -11,4 +11,17 @@ using Game.LevelData;
         Console.SetCursorPosition(x, y);
         Console.Write(' ');
     }
+
+	public static void GetType(Type entityType, LevelData levelData) {
+    	if (entityType == null || !typeof(Entity).IsAssignableFrom(entityType)) return;
+    	foreach (var ele in levelData.Elements.Where(e => entityType.IsInstanceOfType(e))) {
+        	((Entity)ele).Update(levelData);
+		}
+	}
+
+	public static void UpdateAll(LevelData levelData) {
+    	foreach (var ele in levelData.Elements.OfType<Entity>()) {
+        ele.Update(levelData);
+    	}
+	}
 }
