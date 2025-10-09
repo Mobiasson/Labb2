@@ -11,10 +11,6 @@ public abstract class Entity : LevelElement {
 	public Dice attackDice { get; set; }
 	public Dice defenceDice { get; set; }
 
-	public bool CheckSurrounding(int checkX, int checkY, LevelData levelData) {
-		return !levelData.Elements.Any(ele => ele is Wall && ele.X == checkX && ele.Y == checkY);
-	}
-
 	public abstract void Move(int xDirection, int yDirection, LevelData levelData);
 
 	public abstract void Update(LevelData levelData);

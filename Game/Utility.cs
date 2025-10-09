@@ -4,7 +4,6 @@ using Game.LevelData;
 	public static class Utility {
 
     public static bool CheckSurrounding(int checkX, int checkY, LevelData levelData) {
-
         return !levelData.Elements.Any(ele => ele is Wall && ele.X == checkX && ele.Y == checkY);
     }
 
