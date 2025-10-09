@@ -18,4 +18,11 @@ using Game.LevelData;
         	((Entity)ele).Update(levelData);
 		}
 	}
+
+	public static void DrawToolbar(int x, int y, LevelData levelData) {
+		Console.SetCursorPosition(x, y);
+		if(levelData.Player != null) Console.Write($"Player: {levelData.Player.name} | HP: {levelData.Player.healthPoints} | AttackDice: {levelData.Player.attackDice} Turn: {levelData.Player.turn}");
+		else Console.Write("Player: Not found");
+	}
+
 }

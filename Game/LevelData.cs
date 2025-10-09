@@ -1,6 +1,7 @@
 #pragma warning disable CS8602, CS8618
 
 namespace Game.LevelData;
+using Game.Utilities;
 
 public class LevelData {
 	private List<LevelElement>? elements = new List<LevelElement>();
@@ -30,16 +31,11 @@ public class LevelData {
 				}
 			}
 			toolBarY = lines.Length - 1;
-			DrawToolbar(0, lines.Length - 1);
+			Utility.DrawToolbar(0, lines.Length - 1, this);
 			elements.ForEach(ele => ele.Draw());
 		} catch(FileNotFoundException) {
 			Console.WriteLine("File was not found! Check your path!");
 		}
-	}
-	public void DrawToolbar(int x, int y) {
-		Console.SetCursorPosition(x, y);
-		if(Player != null) Console.Write($"Player: {Player.name} | HP: {Player.healthPoints} | AttackDice: {Player.attackDice} Turn: {Player.turn}");
-		else Console.Write("Player: Not found");
 	}
 }
 

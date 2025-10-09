@@ -21,7 +21,7 @@ public class Player : Entity {
             Y += yDirection;
             Draw();
             turn++;
-            levelData.DrawToolbar(0, levelData.toolBarY);
+            Utility.DrawToolbar(0, levelData.toolBarY, levelData);
         }
     }
 
