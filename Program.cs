@@ -19,8 +19,8 @@ public class Program {
 					default: continue;
 				}
 				player.Move(xOffset, yOffset, levelData);
-				Utility.GetType(typeof(Rat), levelData);
-				Utility.GetType(typeof(Snake), levelData);
+				Utility.UpdateType(typeof(Rat), levelData);
+				Utility.UpdateType(typeof(Snake), levelData);
 			}
 		}
 	}

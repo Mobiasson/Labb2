@@ -7,10 +7,10 @@ public abstract class LevelElement {
 	LevelData levelData = new LevelData();
 
 	public void Draw() {
-	Console.SetCursorPosition(X, Y);
-	Console.ForegroundColor = Color;
-	Console.Write(Ch);
-	Console.ResetColor();
+		Console.SetCursorPosition(X, Y);
+		Console.ForegroundColor = Color;
+		Console.Write(Ch);
+		Console.ResetColor();
 	}
 
 }
