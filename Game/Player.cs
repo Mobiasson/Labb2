@@ -21,9 +21,16 @@ public class Player : Entity {
             Y += yDirection;
             Draw();
             turn++;
+			levelData.DrawVisible();
             Utility.DrawToolbar(0, levelData.toolBarY, levelData);
         }
     }
+
+	public bool IsInVisualRange(int x, int y) {
+    	int differenceX = Math.Abs(X - x);
+    	int differenceY = Math.Abs(Y - y);
+    		return differenceX <= 2 && differenceY <= 2;
+	}
 
     public override void Update(LevelData levelData) {
         throw new NotImplementedException();

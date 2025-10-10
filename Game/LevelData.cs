@@ -8,7 +8,8 @@ public class LevelData {
 	public Player Player { get; private set; }
 	public IReadOnlyList<LevelElement> Elements => elements.AsReadOnly();
 	public int toolBarY;
-	public void Load(string fileName) {
+	private List<(int x, int y)> visibleWalls = new List<(int x, int y)>();
+		public void Load(string fileName) {
 		try {
 			string[] lines = File.ReadAllLines(fileName);
 			Console.CursorVisible = false;
@@ -31,13 +32,26 @@ public class LevelData {
 				}
 			}
 			toolBarY = lines.Length - 1;
+			DrawVisible();
 			Utility.DrawToolbar(0, lines.Length - 1, this);
-			elements.ForEach(ele => ele.Draw());
-		} catch(FileNotFoundException) {
+			} catch(FileNotFoundException) {
 			Console.WriteLine("File was not found! Check your path!");
 		}
 	}
-}
+	public void DrawVisible() {
+        Console.Clear();
+        foreach (var ele in elements) {
+            if (ele == Player) ele.Draw();
+            else if (ele is Wall wall && (Player.IsInVisualRange(wall.X, wall.Y) || visibleWalls.Contains((wall.X, wall.Y)))) {
+            ele.Draw();
+            visibleWalls.Add((wall.X, wall.Y));
+            } else if (Player.IsInVisualRange(ele.X, ele.Y)) ele.Draw();
+            else Utility.ClearCurrentCell(ele.X, ele.Y);
+        								}
+    	Utility.DrawToolbar(0, toolBarY, this);
+   			 }
+	    }
+
 
 
 
