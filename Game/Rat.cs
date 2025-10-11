@@ -2,15 +2,9 @@ using Game.LevelData;
 using Game.Utilities;
 public class Rat : Entity {
 
-	private Random rnd = new Random();
+	private static Random rnd = new Random();
 
-	public Rat(int x, int y) : base(x, y) {
-		name = "Rat";
-		Ch = 'r';
-		Color = ConsoleColor.DarkRed;
-		healthPoints = 15;
-		attackDice = new Dice(2, 6, 2);
-	}
+	public Rat(int x, int y) : base(x, y) => (name, ch, color, healthPoints, attackDice, defenceDice) = ("Rat", 'r', ConsoleColor.DarkRed, 15, new Dice(2, 6, 2), new Dice(1, 1, 1));
 
 	public override void Move(int xDirection, int yDirection, LevelData levelData) {
 		(int x, int y)[] directions = { (0, -1), (0, 1), (-1, 0), (1, 0), (0, 0) };

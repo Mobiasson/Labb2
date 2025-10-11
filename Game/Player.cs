@@ -6,14 +6,7 @@ using Game.Utilities;
 public class Player : Entity {
 	public int turn = 0;
 
-	public Player(int x, int y) : base(x, y) {
-		Ch = '@';
-		name = "Player";
-		healthPoints = 100;
-		attackDice = new Dice(2, 6, 2);
-		defenceDice = new Dice(1, 6, 1);
-		Color = ConsoleColor.White;
-	}
+	public Player(int x, int y) : base(x, y) => (ch, name, healthPoints, attackDice, defenceDice, color) = ('@', "Player", 100, new Dice(2, 6, 2), new Dice(1, 6, 1), ConsoleColor.White);
 
 	public override void Move(int xDirection, int yDirection, LevelData levelData) {
 		if(Utility.CheckSurrounding(X + xDirection, Y + yDirection, levelData)) {

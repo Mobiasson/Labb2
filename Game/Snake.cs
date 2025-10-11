@@ -2,15 +2,7 @@ using Game.LevelData;
 using Game.Utilities;
 public class Snake : Entity {
 
-	private Random rnd = new Random();
-
-	public Snake(int x, int y) : base(x, y) {
-		name = "Snake";
-		Ch = 's';
-		Color = ConsoleColor.DarkGreen;
-		healthPoints = 25;
-		attackDice = new Dice(3, 6, 3);
-	}
+	public Snake(int x, int y) : base(x, y) => (name, ch, color, healthPoints, attackDice, defenceDice) = ("Snake", 's', ConsoleColor.DarkGreen, 25, new Dice(3, 6 ,3), new Dice(2, 2, 2));
 
 	public override void Move(int xDirection, int yDirection, LevelData levelData) {
 		int distance = (int)Math.Sqrt(Math.Pow((Y - levelData.Player.Y), 2) + Math.Pow((X - levelData.Player.X), 2));
