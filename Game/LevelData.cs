@@ -1,6 +1,7 @@
 #pragma warning disable CS8602, CS8618
 
 namespace Game.LevelData;
+
 using Game.Utilities;
 
 public class LevelData {
@@ -17,19 +18,11 @@ public class LevelData {
 				string line = lines[y];
 				for(int x = 0; x < line.Length; x++) {
 					char ch = line[x];
-					if(ch.Equals('#')) {
-						elements.Add(new Wall(x, y));
-					} else if(ch.Equals('r')) {
-						elements.Add(new Rat(x, y));
-					} else if(ch.Equals('s')) {
-						elements.Add(new Snake(x, y));
-					} else if(ch.Equals('@')) {
-						Player = new Player(x, y);
-						elements.Add(Player);
-					} else if(ch.Equals(' ')) {
-						Console.SetCursorPosition(x, y);
-						Console.Write(' ');
-					}
+					if(ch.Equals('#')) elements.Add(new Wall(x, y));
+					else if(ch.Equals('r')) elements.Add(new Rat(x, y));
+					else if(ch.Equals('s')) elements.Add(new Snake(x, y));
+					else if(ch.Equals('@')) elements.Add(Player = new Player(x, y));
+					else if(ch.Equals(' ')) Console.SetCursorPosition(x, y); Console.Write(' ');
 				}
 			}
 			Console.Clear();

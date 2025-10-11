@@ -4,13 +4,12 @@ using Game.LevelData;
 
 public static class Utility {
 
-	private static readonly HashSet<LevelElement> visibleObjects = new HashSet<LevelElement>();
-	private static readonly HashSet<LevelElement> seenWalls = new HashSet<LevelElement>();
-	private static readonly Dictionary<LevelElement, (int X, int Y)> lastDrawnPositions = new Dictionary<LevelElement, (int X, int Y)>();
+	private static HashSet<LevelElement> visibleObjects = new HashSet<LevelElement>();
+	private static HashSet<LevelElement> seenWalls = new HashSet<LevelElement>();
+	private static Dictionary<LevelElement, (int X, int Y)> lastDrawnPositions = new Dictionary<LevelElement, (int X, int Y)>();
 
-	public static bool CheckSurrounding(int checkX, int checkY, LevelData levelData) {
-		return !levelData.Elements.Any(ele => ele is Wall && ele.X == checkX && ele.Y == checkY);
-	}
+	public static bool CheckSurrounding(int checkX, int checkY, LevelData levelData) => !levelData.Elements.Any(ele => ele is Wall && ele.X == checkX && ele.Y == checkY);
+
 
 	public static void ClearCurrentCell(int x, int y) {
 		Console.SetCursorPosition(x, y);
@@ -39,8 +38,7 @@ public static class Utility {
 				continue;
 			}
 			if(inRange) {
-				if((ele is Rat or Snake) && !visibleObjects.Contains(ele))
-					visibleObjects.Add(ele);
+				if((ele is Rat or Snake) && !visibleObjects.Contains(ele)) visibleObjects.Add(ele);
 				if(ele is Wall && !seenWalls.Contains(ele)) {
 					seenWalls.Add(ele);
 					ele.Draw();
@@ -56,8 +54,7 @@ public static class Utility {
 			}
 		}
 		foreach(var wall in seenWalls) {
-			if(!levelData.Elements.Contains(wall))
-				continue;
+			if(!levelData.Elements.Contains(wall)) continue;
 			if(!lastDrawnPositions.ContainsKey(wall)) {
 				wall.Draw();
 				lastDrawnPositions[wall] = (wall.X, wall.Y);
