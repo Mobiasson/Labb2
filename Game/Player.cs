@@ -2,6 +2,7 @@
 
 using Game.LevelData;
 using Game.Utilities;
+
 public class Player : Entity {
 	public int turn = 0;
 
@@ -19,17 +20,16 @@ public class Player : Entity {
 			Utility.ClearCurrentCell(X, Y);
 			X += xDirection;
 			Y += yDirection;
-			Draw();
 			turn++;
-			levelData.DrawVisible();
-			Utility.DrawToolbar(0, levelData.toolBarY, levelData);
+			Draw();
+			Utility.VisualRange(levelData);
 		}
 	}
 
 	public bool IsInVisualRange(int x, int y) {
 		int differenceX = Math.Abs(X - x);
 		int differenceY = Math.Abs(Y - y);
-		return differenceX <= 2 && differenceY <= 2;
+		return differenceX <= 5 && differenceY <= 5;
 	}
 
 	public override void Update(LevelData levelData) {

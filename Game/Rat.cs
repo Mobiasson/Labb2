@@ -21,7 +21,7 @@ public class Rat : Entity {
 			Utility.ClearCurrentCell(X, Y);
 			X = checkX;
 			Y = checkY;
-			Draw();
+			Utility.VisualRange(levelData);
 		}
 	}
 

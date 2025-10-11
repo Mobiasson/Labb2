@@ -21,7 +21,7 @@ public class Snake : Entity {
 			Utility.ClearCurrentCell(X, Y);
 			X = checkX;
 			Y = checkY;
-			Draw();
+			Utility.VisualRange(levelData);
 		}
 	}
 	public override void Update(LevelData levelData) {

@@ -1,5 +1,7 @@
 #pragma warning disable CS8618
 using Game.LevelData;
+
+// DETTA ÄR MIN ENEMY CLASS SOM JAG DÖPT OM FÖR JAG VILLE ANVÄNDA DEN PÅ PLAYER OCKSÅ SNÄLLA
 public abstract class Entity : LevelElement {
 	public Entity(int x, int y) {
 		X = x;
