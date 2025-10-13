@@ -15,9 +15,14 @@ public class Player : Entity {
 			!Utility.CheckSurrounding(newX, newY, levelData))
 			return;
 		if(GameLogic.IsMoving(this, newX, newY, levelData, true)) {
-			GameLogic.CombatLog(0, levelData.toolBarY + 3, levelData);
+			GameLogic.CombatLog(0, levelData.toolBarY + 5, levelData);
 			return;
 		}
+		for(int i = 0; i < 10; i++) {
+			Console.SetCursorPosition(0, levelData.toolBarY + 5 + i);
+			Console.Write(new string(' ', Console.WindowWidth));
+		}
+		GameLogic.ClearCombatLog();
 		Utility.ClearCurrentCell(X, Y);
 		(X, Y, turn) = (newX, newY, turn + 1);
 		Draw();
