@@ -1,20 +1,11 @@
 public class Dice {
-	readonly static Random rnd = new Random();
-	public int numberOfDice = rnd.Next(2);
-	public int sidesPerDice = rnd.Next(1, 6);
-	public int modifier = 2;
+	private int numberOfDice, sidesPerDice, modifier;
 
-	public Dice(int numberOfDice, int sidesPerDice, int modifier) {
-		this.numberOfDice = numberOfDice;
-		this.sidesPerDice = sidesPerDice;
-		this.modifier = modifier;
-	}
+	public Dice(int numberOfDice, int sidesPerDice, int modifier) =>
+		(this.numberOfDice, this.sidesPerDice, this.modifier) = (numberOfDice, sidesPerDice, modifier);
 
-	public int Throw() {
-		return numberOfDice + sidesPerDice;
-	}
+	public int ThrowDice() =>
+		Enumerable.Range(0, numberOfDice).Sum(_ => Random.Shared.Next(1, sidesPerDice + 1)) + modifier;
 
-	public override string? ToString() {
-		return $"{numberOfDice}d{sidesPerDice}+{modifier}";
-	}
+	public override string ToString() => $"{numberOfDice}d{sidesPerDice}+{modifier}";
 }

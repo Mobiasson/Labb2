@@ -1,12 +1,15 @@
 ﻿#pragma warning disable CS8602
 using Game.LevelData;
 using Game.Utilities;
+using Game.GameLogic;
 
 public class Program {
 	static void Main(string[] args) {
 		LevelData levelData = new LevelData();
-		levelData.Load(@"Levels\Level1.txt");
+		levelData.Load("Levels/Level1.txt");
 		Player? player = levelData.Player;
+
+
 
 		while(true) {
 			if(Console.KeyAvailable) {
@@ -22,7 +25,8 @@ public class Program {
 				player.Move(xOffset, yOffset, levelData);
 				Utility.UpdateType(typeof(Rat), levelData);
 				Utility.UpdateType(typeof(Snake), levelData);
-				Utility.DrawToolbar(0, levelData.toolBarY, levelData);
+				Utility.DrawToolbar(0, levelData.toolBarY + 1, levelData);
+				// GameLogic.DrawCombatLog(0, levelData.toolBarY + 3, levelData);
 			}
 		}
 	}

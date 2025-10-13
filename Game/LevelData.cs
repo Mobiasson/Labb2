@@ -1,13 +1,14 @@
-#pragma warning disable CS8602, CS8618
+#pragma warning disable
 
 namespace Game.LevelData;
 
-using Game.Utilities;
-
 public class LevelData {
-	private List<LevelElement>? elements = new List<LevelElement>();
-	public Player Player { get; private set; }
+
+	private readonly List<LevelElement> elements = new();
 	public IReadOnlyList<LevelElement> Elements => elements.AsReadOnly();
+	public Player Player { get; set; }
+	public bool GameOver { get; set; }
+	public bool RemoveElement(LevelElement element) => elements.Remove(element);
 	public int toolBarY;
 
 	public void Load(string fileName) {
@@ -27,9 +28,9 @@ public class LevelData {
 			}
 			Console.Clear();
 			toolBarY = lines.Length - 1;
-			Utility.DrawToolbar(0, toolBarY, this);
 		} catch(FileNotFoundException) {
 			Console.WriteLine("File was not found! Check your path!");
 		}
 	}
 }
+

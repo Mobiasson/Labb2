@@ -1,3 +1,5 @@
+#pragma warning disable
+
 namespace Game.Utilities;
 
 using Game.LevelData;
@@ -6,7 +8,7 @@ public static class Utility {
 
 	private static HashSet<LevelElement> visibleObjects = new HashSet<LevelElement>();
 	private static HashSet<LevelElement> seenWalls = new HashSet<LevelElement>();
-	private static Dictionary<LevelElement, (int X, int Y)> lastDrawnPositions = new Dictionary<LevelElement, (int X, int Y)>();
+	private static List<KeyValuePair<LevelElement, (int X, int Y)>> lastDrawnPositions = new List<KeyValuePair<LevelElement, (int X, int Y)>>();
 
 	public static bool CheckSurrounding(int checkX, int checkY, LevelData levelData) => !levelData.Elements.Any(ele => ele is Wall && ele.X == checkX && ele.Y == checkY);
 
@@ -25,7 +27,7 @@ public static class Utility {
 
 	public static void DrawToolbar(int x, int y, LevelData levelData) {
 		Console.SetCursorPosition(x, y);
-		if(levelData.Player != null) Console.Write($"Player: {levelData.Player.name} | HP: {levelData.Player.healthPoints} | AttackDice: {levelData.Player.attackDice} Turn: {levelData.Player.turn}");
+		if(levelData.Player != null) Console.Write($"Player: {levelData.Player.name} | HP: {levelData.Player.healthPoints} | AttackDice: {levelData.Player.attackDice} | DefenceDice: {levelData.Player.defenceDice} | Turn: {levelData.Player.turn}");
 		else Console.Write("Player: Not found");
 	}
 
@@ -34,7 +36,7 @@ public static class Utility {
 			bool inRange = levelData.Player.IsInVisualRange(ele.X, ele.Y);
 			if((ele is Rat or Snake) && !inRange) {
 				ClearCurrentCell(ele.X, ele.Y);
-				lastDrawnPositions.Remove(ele);
+				lastDrawnPositions.RemoveAll(p => p.Key == ele);
 				continue;
 			}
 			if(inRange) {
@@ -46,18 +48,21 @@ public static class Utility {
 				}
 			}
 			if(inRange && ele is (Rat or Snake)) {
-				if(!lastDrawnPositions.TryGetValue(ele, out var lastPos) || lastPos.X != ele.X || lastPos.Y != ele.Y) {
+				var drawn = lastDrawnPositions.FirstOrDefault(p => p.Key == ele);
+				var lastPos = drawn.Value;
+				if(drawn.Key == null || lastPos.X != ele.X || lastPos.Y != ele.Y) {
 					ClearCurrentCell(lastPos.X, lastPos.Y);
 					ele.Draw();
-					lastDrawnPositions[ele] = (ele.X, ele.Y);
+					if(drawn.Key != null) lastDrawnPositions.Remove(drawn);
+					lastDrawnPositions.Add(new KeyValuePair<LevelElement, (int, int)>(ele, (ele.X, ele.Y)));
 				}
 			}
 		}
 		foreach(var wall in seenWalls) {
 			if(!levelData.Elements.Contains(wall)) continue;
-			if(!lastDrawnPositions.ContainsKey(wall)) {
+			if(!lastDrawnPositions.Any(p => p.Key == wall)) {
 				wall.Draw();
-				lastDrawnPositions[wall] = (wall.X, wall.Y);
+				lastDrawnPositions.Add(new KeyValuePair<LevelElement, (int, int)>(wall, (wall.X, wall.Y)));
 			}
 		}
 	}

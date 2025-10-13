@@ -1,5 +1,7 @@
 using Game.LevelData;
 using Game.Utilities;
+using Game.GameLogic;
+
 public class Rat : Entity {
 
 	private static Random rnd = new Random();
@@ -18,7 +20,6 @@ public class Rat : Entity {
 			Utility.VisualRange(levelData);
 		}
 	}
-
 	public override void Update(LevelData levelData) {
 		if(healthPoints <= 0) Console.WriteLine("A DEAD RAT IS A GOOD RAT");
 		Move(X, Y, levelData);
