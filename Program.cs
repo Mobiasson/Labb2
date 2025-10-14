@@ -1,7 +1,6 @@
 ﻿#pragma warning disable CS8602
 using Game.LevelData;
 using Game.Utilities;
-using Game.GameLogic;
 
 public class Program {
 	static void Main(string[] args) {
@@ -26,7 +25,6 @@ public class Program {
 				Utility.UpdateType(typeof(Rat), levelData);
 				Utility.UpdateType(typeof(Snake), levelData);
 				Utility.DrawToolbar(0, levelData.toolBarY + 1, levelData);
-				// GameLogic.DrawCombatLog(0, levelData.toolBarY + 3, levelData);
 			}
 		}
 	}

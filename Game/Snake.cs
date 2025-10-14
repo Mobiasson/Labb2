@@ -17,7 +17,6 @@ public class Snake : Entity {
 		}
 	}
 	public override void Update(LevelData levelData) {
-		if(healthPoints <= 0) Console.WriteLine("DEAD");
 		Move(X, Y, levelData);
 	}
 }
