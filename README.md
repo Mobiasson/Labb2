@@ -18,6 +18,7 @@ I den här inlämningen ska vi skapa ett spel i form av ett **dungeon crawler** 
 
 ## Tekniska detaljer
 - **Språk**: C#
+- **Tech-stack** Helix-text-editor, Powershell, QuteBrowser
 - **Inläsning**: Läser in `Level1.txt` för att skapa spelvärlden.
 - **Objektorientering**: Objekt (t.ex. spelare, fiender, väggar) ska vara självständiga med egna attribut och metoder.
 
@@ -26,9 +27,6 @@ Skriv kod som:
 1. Läser in och tolkar `Level1.txt`.
 2. Skapar objekt för spelare, fiender och väggar.
 3. Hanterar objektens data (position, färg, hälsa) och beteenden (förflyttning, attacker).
-
-## Extra
-- Lägg till items, vapen, föremål och sätt att återställa HP.
 
 ## Overview of relationships
 ```mermaid
@@ -90,4 +88,5 @@ classDiagram
     LevelData o--> "many" LevelElement
     Enemy *--> "2" Dice
     Player *--> "2" Dice
+
 
