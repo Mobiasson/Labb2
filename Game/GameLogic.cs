@@ -33,6 +33,9 @@ public static class GameLogic {
 				combatLog.Add($"{attacker.name} dealt {damage} damage");
 			}
 			if(defender.healthPoints <= 0) {
+				if(defender is Player) {
+					YouSuck(levelData);
+				}
 				combatLog.Add($"{defender.name} died");
 				break;
 			}
@@ -47,6 +50,9 @@ public static class GameLogic {
 				combatLog.Add($"{defender.name} dealt {damage} damage");
 			}
 			if(attacker.healthPoints <= 0) {
+				if(attacker is Player) {
+					YouSuck(levelData);
+				}
 				combatLog.Add($"{attacker.name} died");
 				break;
 			}
@@ -93,21 +99,24 @@ public static class GameLogic {
 		logIndex = 0;
 	}
 
-	public static void YouSuck(LevelData levelData) {
-		ClearCombatLog();
-		combatLog.Add("Game Over");
-		levelData.YouSuck = true;
-		CombatLog(0, levelData.toolBarY + 5, levelData);
-		Console.ReadKey(true);
-		for(int i = 0; i < MaxLogLines; i++) {
-			int line = levelData.toolBarY + 5 + i;
-			if(line < Console.WindowHeight) {
-				Console.SetCursorPosition(0, line);
-				Console.Write(new string(' ', Console.WindowWidth));
-			}
-		}
-		ClearCombatLog();
-	}
-
+public static void YouSuck(LevelData levelData)
+    {
+        ClearCombatLog();
+        combatLog.Add("You suck!");
+        levelData.YouSuck = true; // Signal game over
+        CombatLog(0, levelData.toolBarY + 5, levelData);
+        Console.WriteLine("\nPress 'R' to restart or any other key to exit.");
+        ConsoleKeyInfo key = Console.ReadKey(true);
+        if (key.KeyChar == 'r' || key.KeyChar == 'R')
+        {
+            levelData.YouSuck = false; // Reset for restart
+            ClearCombatLog();
+            // Restart logic would be handled in Program.cs
+        }
+        else
+        {
+            ClearCombatLog();
+        }
+    }
 	public static bool IsCombatActive() => isCombatActive;
 }
