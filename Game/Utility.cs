@@ -19,17 +19,14 @@ public static class Utility {
 	}
 
 	public static void UpdateType(Type entityType, LevelData levelData) {
-            if (entityType == null || !typeof(Entity).IsAssignableFrom(entityType)) return;
-            var elementsCopyList = levelData.Elements.ToList();
-            foreach (var ele in elementsCopyList.Where(e => entityType.IsInstanceOfType(e)))
-            {
-                ((Entity)ele).Update(levelData);
-            }
-        }
+		var elementsCopyList = levelData.Elements.ToList();
+		foreach(var ele in elementsCopyList.Where(e => entityType.IsInstanceOfType(e))) {
+			((Entity)ele).Update(levelData);
+		}
+	}
 	public static void DrawToolbar(int x, int y, LevelData levelData) {
 		Console.SetCursorPosition(x, y);
 		if(levelData.Player != null) Console.Write($"Player: {levelData.Player.name} | HP: {levelData.Player.healthPoints} | AttackDice: {levelData.Player.attackDice} | DefenceDice: {levelData.Player.defenceDice} | Turn: {levelData.Player.turn}");
-		else Console.Write("Player: Not found");
 	}
 
 	public static void VisualRange(LevelData levelData) {
@@ -51,10 +48,10 @@ public static class Utility {
 			if(inRange && ele is (Rat or Snake)) {
 				var drawn = lastDrawnPositions.FirstOrDefault(p => p.Key == ele);
 				var lastPos = drawn.Value;
-				if (drawn.Key == null || lastPos.X != ele.X || lastPos.Y != ele.Y) {
+				if(drawn.Key == null || lastPos.X != ele.X || lastPos.Y != ele.Y) {
 					ClearCurrentCell(lastPos.X, lastPos.Y);
 					ele.Draw();
-					if (drawn.Key != null) lastDrawnPositions.Remove(drawn);
+					if(drawn.Key != null) lastDrawnPositions.Remove(drawn);
 					lastDrawnPositions.Add(new KeyValuePair<LevelElement, (int, int)>(ele, (ele.X, ele.Y)));
 				}
 			}

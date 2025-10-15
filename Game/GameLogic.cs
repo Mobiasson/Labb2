@@ -1,9 +1,10 @@
 namespace Game.GameLogic;
+
 using Game.LevelData;
 using Game.Utilities;
 
 public static class GameLogic {
-	private static readonly List<string> combatLog = new();
+	private static List<string> combatLog = new List<string>();
 	private static int logIndex = 0;
 	private const int MaxLogLines = 10;
 	private static bool isCombatActive = false;
@@ -19,6 +20,7 @@ public static class GameLogic {
 		while(attacker.healthPoints > 0 && defender.healthPoints > 0) {
 			int attackScore = attacker.attackDice.ThrowDice();
 			int defenseScore = defender.defenceDice.ThrowDice();
+			combatLog.Add($"ATTACKER: {attacker.ch} DEFENDER: {defender.ch}");
 			combatLog.Add($"TURN: {turn}");
 			combatLog.Add($"ATTACKER: {attacker.name} HP: {attacker.healthPoints}");
 			combatLog.Add($"{attacker.name} attackRolled {attackScore}");
@@ -34,7 +36,7 @@ public static class GameLogic {
 			}
 			attackScore = defender.attackDice.ThrowDice();
 			defenseScore = attacker.defenceDice.ThrowDice();
-			combatLog.Add($"DEFENDER: {defender.name} HP: {defender.healthPoints}");
+			combatLog.Add($"{defender.name} HP: {defender.healthPoints}");
 			combatLog.Add($"{defender.name} attackRolled {attackScore}");
 			combatLog.Add($"{attacker.name} defenceRolled {defenseScore}");
 			if(attackScore > defenseScore) {
@@ -50,13 +52,12 @@ public static class GameLogic {
 			DisplayAndWait(levelData);
 			ClearCombatLog();
 		}
-if (attacker.healthPoints <= 0 || defender.healthPoints <= 0)
-{
-    if (defender is Player && defender.healthPoints <= 0) YouSuck(levelData);
-    else if (attacker.healthPoints <= 0 && levelData.RemoveElement(attacker)) Utility.ClearCurrentCell(attacker.X, attacker.Y);
-    else if (defender.healthPoints <= 0 && levelData.RemoveElement(defender)) Utility.ClearCurrentCell(defender.X, defender.Y);
-    DisplayAndWait(levelData);
-}
+		if(attacker.healthPoints <= 0 || defender.healthPoints <= 0) {
+			if(defender is Player && defender.healthPoints <= 0) YouSuck(levelData);
+			else if(attacker.healthPoints <= 0 && levelData.RemoveElement(attacker)) Utility.ClearCurrentCell(attacker.X, attacker.Y);
+			else if(defender.healthPoints <= 0 && levelData.RemoveElement(defender)) Utility.ClearCurrentCell(defender.X, defender.Y);
+			DisplayAndWait(levelData);
+		}
 		isCombatActive = false;
 		return attacker.healthPoints > 0 || defender.healthPoints > 0;
 	}
@@ -64,7 +65,7 @@ if (attacker.healthPoints <= 0 || defender.healthPoints <= 0)
 	private static void DisplayAndWait(LevelData levelData) {
 		CombatLog(0, levelData.toolBarY + 5, levelData);
 		Console.ReadKey(true);
-			}
+	}
 
 	public static void CombatLog(int x, int y, LevelData levelData) {
 		int maxLines = Math.Min(MaxLogLines, Console.WindowHeight - y);
