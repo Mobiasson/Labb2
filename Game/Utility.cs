@@ -22,16 +22,14 @@ public static class Utility {
 		}
 	}
 
-public static void DrawToolbar(int x, int y, LevelData levelData)
-        {
-            Console.SetCursorPosition(x, y);
-            if (levelData.Player != null)
-            {
-                string toolbarText = $"Player: {levelData.Player.name} | HP: {levelData.Player.healthPoints} | AttackDice: {levelData.Player.attackDice} | DefenceDice: {levelData.Player.defenceDice} | Turn: {levelData.Player.turn}";
-                Console.Write(toolbarText);
-                Console.Write(new string(' ', Console.WindowWidth - toolbarText.Length));
-            }
-        }
+	public static void DrawToolbar(int x, int y, LevelData levelData) {
+		Console.SetCursorPosition(x, y);
+		if(levelData.Player != null) {
+			string toolbarText = $"Player: {levelData.Player.name} | HP: {levelData.Player.healthPoints} | AttackDice: {levelData.Player.attackDice} | DefenceDice: {levelData.Player.defenceDice} | Turn: {levelData.Player.turn}";
+			Console.Write(toolbarText);
+			Console.Write(new string(' ', Console.WindowWidth - toolbarText.Length));
+		}
+	}
 	public static void VisualRange(LevelData levelData) {
 		foreach(var ele in levelData.Elements) {
 			bool inRange = levelData.Player.IsInVisualRange(ele.X, ele.Y);

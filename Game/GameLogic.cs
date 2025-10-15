@@ -99,23 +99,19 @@ public static class GameLogic {
 		logIndex = 0;
 	}
 
-public static void YouSuck(LevelData levelData)
-    {
-        ClearCombatLog();
-        combatLog.Add("You suck!");
+	public static void YouSuck(LevelData levelData) {
+		ClearCombatLog();
+		combatLog.Add("You suck!");
 		levelData.YouSuck = true;
-        CombatLog(0, levelData.toolBarY + 5, levelData);
-        Console.WriteLine("\nPress 'R' to restart or any other key to exit.");
-        ConsoleKeyInfo key = Console.ReadKey(true);
-        if (key.KeyChar == 'r' || key.KeyChar == 'R')
-        {
-            levelData.YouSuck = false;
-            ClearCombatLog();
-        }
-        else
-        {
-            ClearCombatLog();
-        }
-    }
+		CombatLog(0, levelData.toolBarY + 5, levelData);
+		Console.WriteLine("\nPress 'R' to restart or any other key to exit.");
+		ConsoleKeyInfo key = Console.ReadKey(true);
+		if(key.KeyChar == 'r' || key.KeyChar == 'R') {
+			levelData.YouSuck = false;
+			ClearCombatLog();
+		} else {
+			ClearCombatLog();
+		}
+	}
 	public static bool IsCombatActive() => isCombatActive;
 }
