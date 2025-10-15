@@ -1,5 +1,3 @@
-#pragma warning disable
-
 using Game.LevelData;
 using Game.GameLogic;
 using Game.Utilities;
@@ -25,6 +23,7 @@ public class Player : Entity {
 		int differenceX = Math.Abs(X - x);
 		int differenceY = Math.Abs(Y - y);
 		return differenceX <= 5 && differenceY <= 5;
+
 	}
 
 	public override void Update(LevelData levelData) {

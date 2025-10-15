@@ -1,3 +1,5 @@
+#pragma warning disable
+
 namespace Game.GameLogic;
 
 using Game.LevelData;
@@ -13,11 +15,11 @@ public static class GameLogic {
 		levelData.Elements.Any(ele => ele is (Rat or Snake or Player) && ele != mover && ele.X == x && ele.Y == y) &&
 		Combat(mover, levelData.Elements.Single(ele => ele is (Rat or Snake or Player) && ele != mover && ele.X == x && ele.Y == y) as Entity, levelData, playerInitiated);
 
-	public static bool Combat(Entity attacker, Entity defender, LevelData levelData, bool playerInitiated) {
+	public static bool Combat(Entity attacker, Entity? defender, LevelData levelData, bool playerInitiated) {
 		ClearCombatLog();
 		isCombatActive = true;
 		int turn = 1;
-		while(attacker.healthPoints > 0 && defender.healthPoints > 0) {
+		while(attacker.healthPoints > 0 && defender?.healthPoints > 0) {
 			int attackScore = attacker.attackDice.ThrowDice();
 			int defenseScore = defender.defenceDice.ThrowDice();
 			combatLog.Add($"ATTACKER: {attacker.ch} DEFENDER: {defender.ch}");
@@ -94,7 +96,7 @@ public static class GameLogic {
 	public static void YouSuck(LevelData levelData) {
 		ClearCombatLog();
 		combatLog.Add("Game Over");
-		levelData.GameOver = true;
+		levelData.YouSuck = true;
 		CombatLog(0, levelData.toolBarY + 5, levelData);
 		Console.ReadKey(true);
 		for(int i = 0; i < MaxLogLines; i++) {

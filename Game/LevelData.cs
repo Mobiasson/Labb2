@@ -1,13 +1,11 @@
-#pragma warning disable
-
 namespace Game.LevelData;
 
 public class LevelData {
 
 	private readonly List<LevelElement> elements = new();
 	public IReadOnlyList<LevelElement> Elements => elements.AsReadOnly();
-	public Player Player { get; set; }
-	public bool GameOver { get; set; }
+	public Player? Player { get; set; }
+	public bool YouSuck { get; set; }
 	public bool RemoveElement(LevelElement element) => elements.Remove(element);
 	public int toolBarY;
 
@@ -33,4 +31,5 @@ public class LevelData {
 		}
 	}
 }
+
 

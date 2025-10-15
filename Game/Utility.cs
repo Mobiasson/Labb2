@@ -1,5 +1,3 @@
-#pragma warning disable
-
 namespace Game.Utilities;
 
 using Game.LevelData;
@@ -10,8 +8,7 @@ public static class Utility {
 	private static HashSet<LevelElement> seenWalls = new HashSet<LevelElement>();
 	private static List<KeyValuePair<LevelElement, (int X, int Y)>> lastDrawnPositions = new List<KeyValuePair<LevelElement, (int X, int Y)>>();
 
-	public static bool CheckSurrounding(int checkX, int checkY, LevelData levelData) => !levelData.Elements.Any(ele => ele is Wall && ele.X == checkX && ele.Y == checkY);
-
+	public static bool CheckSurrounding(int checkX, int checkY, LevelData levelData) => !levelData.Elements.Any(ele => (ele is Wall || ele is Rat) && ele.X == checkX && ele.Y == checkY);
 
 	public static void ClearCurrentCell(int x, int y) {
 		Console.SetCursorPosition(x, y);
